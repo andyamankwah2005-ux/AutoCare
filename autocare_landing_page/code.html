@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoCare | AI-Driven Predictive Maintenance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#00677d",
+                        "outline-variant": "#c3c6d6",
+                        "on-primary-fixed": "#001847",
+                        "on-secondary-container": "#005c70",
+                        "surface-container-highest": "#e4e1e7",
+                        "on-tertiary-container": "#c3daff",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#afc8ee",
+                        "on-primary-container": "#ccd8ff",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-surface": "#303034",
+                        "inverse-primary": "#b2c5ff",
+                        "outline": "#737785",
+                        "tertiary-fixed": "#d3e3ff",
+                        "on-surface-variant": "#424654",
+                        "on-secondary-fixed": "#001f27",
+                        "background": "#fbf8fe",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "secondary-fixed": "#b3ebff",
+                        "surface-tint": "#0056d2",
+                        "secondary-fixed-dim": "#4cd6fb",
+                        "surface-container-high": "#eae7ed",
+                        "primary": "#0040a1",
+                        "surface-container-low": "#f6f2f8",
+                        "on-surface": "#1b1b1f",
+                        "on-background": "#1b1b1f",
+                        "on-secondary-fixed-variant": "#004e5f",
+                        "surface-variant": "#e4e1e7",
+                        "surface-bright": "#fbf8fe",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#2f4868",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0edf2",
+                        "secondary-container": "#50d9fe",
+                        "tertiary": "#304868",
+                        "on-tertiary-fixed": "#001c39",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "inverse-on-surface": "#f3f0f5",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbf8fe",
+                        "tertiary-container": "#486081",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dcd9de",
+                        "primary-container": "#0056d2"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(251, 248, 254, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(195, 198, 214, 0.15);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0040a1 0%, #0056d2 100%);
+        }
+        .text-shadow-tech {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background">
+<!-- Shared Navigation -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-slate-50 group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="layout-container flex h-full grow flex-col">
+<header class="glass-nav sticky top-0 z-50 flex items-center justify-between whitespace-nowrap px-10 py-3">
+<div class="flex items-center gap-4 text-[#0c131d]">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 12.236C39.9944 12.2537 39.9875 12.2845 39.9748 12.3294C39.9436 12.4399 39.8949 12.5741 39.8346 12.7175C39.8168 12.7597 39.7989 12.8007 39.7813 12.8398C38.5103 13.7113 35.9788 14.9393 33.7095 15.4811C30.9875 16.131 27.6413 16.5217 24 16.5217C20.3587 16.5217 17.0125 16.131 14.2905 15.4811C12.0012 14.9346 9.44505 13.6897 8.18538 12.8168C8.17384 12.7925 8.16216 12.767 8.15052 12.7408C8.09919 12.6249 8.05721 12.5114 8.02977 12.411C8.00356 12.3152 8.00039 12.2667 8.00004 12.2612C8.00004 12.261 8 12.2607 8.00004 12.2612C8.00004 12.2359 8.0104 11.9233 8.68485 11.3686C9.34546 10.8254 10.4222 10.2469 11.9291 9.72276C14.9242 8.68098 19.1919 8 24 8C28.8081 8 33.0758 8.68098 36.0709 9.72276C37.5778 10.2469 38.6545 10.8254 39.3151 11.3686C39.9006 11.8501 39.9857 12.1489 39.998 12.236ZM4.95178 15.2312L21.4543 41.6973C22.6288 43.5809 25.3712 43.5809 26.5457 41.6973L43.0534 15.223C43.0709 15.1948 43.0878 15.1662 43.104 15.1371L41.3563 14.1648C43.104 15.1371 43.1038 15.1374 43.104 15.1371L43.1051 15.135L43.1065 15.1325L43.1101 15.1261L43.1199 15.1082C43.1276 15.094 43.1377 15.0754 43.1497 15.0527C43.1738 15.0075 43.2062 14.9455 43.244 14.8701C43.319 14.7208 43.4196 14.511 43.5217 14.2683C43.6901 13.8679 44 13.0689 44 12.2609C44 10.5573 43.003 9.22254 41.8558 8.2791C40.6947 7.32427 39.1354 6.55361 37.385 5.94477C33.8654 4.72057 29.133 4 24 4C18.867 4 14.1346 4.72057 10.615 5.94478C8.86463 6.55361 7.30529 7.32428 6.14419 8.27911C4.99695 9.22255 3.99999 10.5573 3.99999 12.2609C3.99999 13.1275 4.29264 13.9078 4.49321 14.3607C4.60375 14.6102 4.71348 14.8196 4.79687 14.9689C4.83898 15.0444 4.87547 15.1065 4.9035 15.1529C4.91754 15.1762 4.92954 15.1957 4.93916 15.2111L4.94662 15.223L4.95178 15.2312ZM35.9868 18.996L24 38.22L12.0131 18.996C12.4661 19.1391 12.9179 19.2658 13.3617 19.3718C16.4281 20.1039 20.0901 20.5217 24 20.5217C27.9099 20.5217 31.5719 20.1039 34.6383 19.3718C35.082 19.2658 35.5339 19.1391 35.9868 18.996Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-on-background text-xl font-headline font-extrabold leading-tight tracking-[-0.015em]">AutoCare</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium leading-normal" href="#features">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium leading-normal" href="#plans">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium leading-normal" href="#mechanics">For Mechanics</a>
+</nav>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 hero-gradient text-on-primary text-sm font-bold leading-normal tracking-[0.015em] hover:scale-105 transition-transform">
+<span class="truncate">Login</span>
+</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-on-primary-fixed pt-16 pb-24 lg:pt-32 lg:pb-40">
+<div class="absolute inset-0 opacity-40 mix-blend-overlay">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxury car in professional high tech garage" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_MWp-2Ynq_MSkdwalv-SoABa01q28LqBhyNvE1T-1ETKxhupUQEUnTVLwMMjYZtbZ7idiCDjuzhPZ2isz3svkOBlBepzZGKxtKjdSqr5fwq0PEJBmWH-yyzzDGvIwrx5a41q7p1hDMVYew3sJmU75fDafnEPSV53M3UQO8yyxyRrvCC9j_WLDUECVOmTKpAasGaWB1Afh_eNOSbRmz44InMOGd2Ea1lGIj2LSVaDMPPtvCksZqyTvrxSIO3JplIPALt8uAsVU');"></div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-on-primary-fixed via-on-primary-fixed/80 to-transparent"></div>
+<div class="relative layout-content-container mx-auto px-10 max-w-[1200px]">
+<div class="max-w-[720px] flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<span class="text-secondary-fixed font-bold tracking-widest text-xs uppercase">Future-Proof Your Ride</span>
+<h1 class="text-on-primary text-5xl lg:text-7xl font-headline font-black leading-[1.1] tracking-[-0.04em] text-shadow-tech">
+                                    AI-Driven Predictive Maintenance for the Modern Driver
+                                </h1>
+<p class="text-primary-fixed/80 text-lg lg:text-xl font-normal leading-relaxed max-w-[600px]">
+                                    Experience the future of smart car servicing. Our advanced diagnostics anticipate issues before they happen, keeping you safe and your car optimal.
+                                </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 hero-gradient text-on-primary text-base font-bold transition-all hover:scale-105 shadow-lg shadow-primary/20">
+<span class="truncate">Book a Service</span>
+</button>
+<button class="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-surface-container-lowest/10 backdrop-blur-md text-on-primary border border-on-primary/20 text-base font-bold transition-all hover:bg-white/10">
+<span class="truncate">Join as a Mechanic</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-24 bg-surface px-10" id="features">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col gap-4 mb-16">
+<h2 class="text-on-surface font-headline text-4xl font-black tracking-tight">How it Works</h2>
+<p class="text-on-surface-variant text-lg max-w-[600px]">Our platform leverages real-time telemetry and proprietary AI models to redefine vehicle longevity.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="flex flex-col gap-6 p-8 rounded-full bg-surface-container-low transition-all hover:shadow-xl hover:shadow-on-surface/5 group">
+<div class="w-14 h-14 rounded-xl hero-gradient flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-3xl">computer</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-on-surface text-xl font-headline font-bold">Real-time Diagnostics</h3>
+<p class="text-on-surface-variant leading-relaxed">Connect your vehicle’s OBD-II to our encrypted cloud for second-by-second health snapshots.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex flex-col gap-6 p-8 rounded-full bg-surface-container-low transition-all hover:shadow-xl hover:shadow-on-surface/5 group">
+<div class="w-14 h-14 rounded-xl hero-gradient flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-3xl">notifications_active</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-on-surface text-xl font-headline font-bold">Predictive Alerts</h3>
+<p class="text-on-surface-variant leading-relaxed">Our AI recognizes patterns 2,000 miles before a failure occurs. Never get stranded again.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="flex flex-col gap-6 p-8 rounded-full bg-surface-container-low transition-all hover:shadow-xl hover:shadow-on-surface/5 group">
+<div class="w-14 h-14 rounded-xl hero-gradient flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-3xl">engineering</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-on-surface text-xl font-headline font-bold">Expert Network</h3>
+<p class="text-on-surface-variant leading-relaxed">Instant access to certified master technicians who know your car’s data history before you arrive.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Plans -->
+<section class="py-24 bg-surface-container-low px-10" id="plans">
+<div class="max-w-[1200px] mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-on-surface font-headline text-4xl font-black mb-4">Precision Service Plans</h2>
+<p class="text-on-surface-variant">Choose the level of protection that fits your driving lifestyle.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Basic Plan -->
+<div class="bg-surface-container-lowest p-8 rounded-full border border-outline-variant/10 flex flex-col justify-between">
+<div>
+<h3 class="text-on-surface-variant font-bold text-sm uppercase tracking-widest mb-2">Standard</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-on-surface text-5xl font-black tracking-tighter">$19</span>
+<span class="text-on-surface-variant text-sm font-medium">/month</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Basic Diagnostics
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Oil Change Alerts
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Service History Log
+                                        </li>
+</ul>
+</div>
+<button class="w-full h-12 rounded-xl bg-surface-container-high text-on-surface font-bold hover:bg-surface-variant transition-colors">Select Plan</button>
+</div>
+<!-- Premium Plan -->
+<div class="bg-surface-container-lowest p-8 rounded-full border-2 border-primary relative flex flex-col justify-between shadow-2xl shadow-primary/10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Best Value</div>
+<div>
+<h3 class="text-primary font-bold text-sm uppercase tracking-widest mb-2">Premium</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-on-surface text-5xl font-black tracking-tighter">$49</span>
+<span class="text-on-surface-variant text-sm font-medium">/month</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Predictive Maintenance
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Priority Booking
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Roadside Assistance
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Detailed AI Analytics
+                                        </li>
+</ul>
+</div>
+<button class="w-full h-12 rounded-xl hero-gradient text-on-primary font-bold hover:scale-[1.02] transition-transform">Get Started</button>
+</div>
+<!-- Elite Plan -->
+<div class="bg-surface-container-lowest p-8 rounded-full border border-outline-variant/10 flex flex-col justify-between">
+<div>
+<h3 class="text-on-surface-variant font-bold text-sm uppercase tracking-widest mb-2">Elite</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-on-surface text-5xl font-black tracking-tighter">$99</span>
+<span class="text-on-surface-variant text-sm font-medium">/month</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            24/7 Personal Concierge
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Full Synthetic Coverage
+                                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                            Annual Detailing Included
+                                        </li>
+</ul>
+</div>
+<button class="w-full h-12 rounded-xl bg-surface-container-high text-on-surface font-bold hover:bg-surface-variant transition-colors">Select Plan</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface px-10">
+<div class="max-w-[1200px] mx-auto">
+<h2 class="text-on-surface font-headline text-3xl font-black mb-12 text-center">Trusted by Thousands of Drivers</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="p-8 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5">
+<div class="flex gap-1 text-secondary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface italic leading-relaxed mb-6">"AutoCare saved me from a transmission failure in the middle of a road trip. The AI alert popped up a week before. Truly a lifesaver!"</p>
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-cover" data-alt="Portrait of satisfied male customer" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX-AdnCcW5y0-k6RGfAvSo-qliSrPcCdMq3vWHw3R_aOEQcY64rgkRqRlKFWF4w3aJ250CvNl_CqwCV34dEMxhQLVOqczXuOxKaOSLyXM4rmYCK4QMMnWATVo1nSymr96de5qhuuEuMuhamAXt8HDRKpyGHL2XQUNd2vKqWAgAVQPFkVhSpvx35ovMruj-sFtN_dajkMCPwwNsFy84TbgqprGCqajC8YAvS59vNrrduvMcYHnKRRbwentBZQSbWfGgPYaoBDA4');"></div>
+<div>
+<h4 class="text-on-surface font-bold text-sm">Marcus Chen</h4>
+<p class="text-on-surface-variant text-xs">Tesla Model S Owner</p>
+</div>
+</div>
+</div>
+<div class="p-8 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5">
+<div class="flex gap-1 text-secondary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface italic leading-relaxed mb-6">"The most frictionless car service experience ever. I booked through the app, and the mechanic already had all my diagnostic data."</p>
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-cover" data-alt="Portrait of satisfied female customer" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABC6TvLt4yfLWT9wMGxILoOH1ciOkvGod0JEvss0N9lCAP-SV3KMaSGZ1koS34Qw8YaPmQJpBJAQLjH5lneXlNRrQpFF5LoqIrbXNa_SWDzOfbU4BTqEuSxlnuBZr7S2j44ZwM9Sy7AWV2vc8E-BxUk4xG3hCR4Ilroh3ym-t0b5G6wx5E_FUCiQ7U7OvYJb_Ix-aShaAa2bcLr2MS7lah7mRfyXr9uVQivcFeWS7JQRM5mKsjQ30GYI_A03y67_UV-FizuRHz');"></div>
+<div>
+<h4 class="text-on-surface font-bold text-sm">Elena Rodriguez</h4>
+<p class="text-on-surface-variant text-xs">Porsche Macan Driver</p>
+</div>
+</div>
+</div>
+<div class="p-8 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5">
+<div class="flex gap-1 text-secondary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface italic leading-relaxed mb-6">"As a mechanic, AutoCare's diagnostics are incredibly precise. It streamlines my workflow and builds massive trust with my clients."</p>
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-cover" data-alt="Portrait of professional mechanic" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwtWOp8QNAg3jVZ2KcNf0lu5OjkvpFNTIJSLcb773sVsRrAAZq6YPU5B2zj1MiVRg5rv46Mb-Qubc2ZDixeTZ_TNZ5KGAOkR9Qu2U4jtkBGy1rekRYCGSJRbngHhP8Gbo-8BGdU8xi9nnimFkla1RHTBvQeQmVzHHVGAbC9n7Or8ixTWwawyUDdmIBK84oAQeGdVjwa7w-I2u4NHitG4Q564SMw6dVrCDoIsNqxKdRSPijTNgse0F_0AGBadvYxVNpFAkuecSD');"></div>
+<div>
+<h4 class="text-on-surface font-bold text-sm">David Smith</h4>
+<p class="text-on-surface-variant text-xs">Master Technician</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 px-10">
+<div class="max-w-[1000px] mx-auto rounded-full hero-gradient p-12 lg:p-20 text-center text-on-primary shadow-2xl overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+<div class="relative z-10 flex flex-col items-center gap-8">
+<h2 class="font-headline text-4xl lg:text-5xl font-black max-w-[700px]">Ready to experience the future of driving?</h2>
+<p class="text-primary-fixed/80 text-lg max-w-[500px]">Join 50,000+ drivers who trust AutoCare to keep their vehicles in peak condition.</p>
+<button class="px-10 h-14 bg-on-primary text-primary font-black rounded-xl hover:scale-105 transition-transform shadow-lg">
+                                Book Your First Diagnostic
+                            </button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-on-primary-fixed pt-20 pb-10 px-10">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-16">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
+<div class="col-span-2 flex flex-col gap-6">
+<div class="flex items-center gap-3 text-on-primary">
+<div class="size-6 text-secondary-container">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z"></path>
+</svg>
+</div>
+<h3 class="font-headline font-black text-xl">AutoCare</h3>
+</div>
+<p class="text-primary-fixed-dim/60 text-sm leading-relaxed max-w-[300px]">
+                                Redefining vehicle maintenance through artificial intelligence and a passion for precision engineering.
+                            </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-on-primary font-bold text-sm">Product</h4>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Features</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Pricing</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">AI Diagnostics</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-on-primary font-bold text-sm">Company</h4>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">About Us</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Careers</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Partners</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-on-primary font-bold text-sm">Support</h4>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Help Center</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Safety</a>
+<a class="text-primary-fixed-dim/70 text-sm hover:text-on-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+<div class="pt-8 border-t border-primary-container/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-primary-fixed-dim/40 text-xs">© 2024 AutoCare AI Systems Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-primary-fixed-dim/40 hover:text-on-primary text-xs transition-colors" href="#">Privacy Policy</a>
+<a class="text-primary-fixed-dim/40 hover:text-on-primary text-xs transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

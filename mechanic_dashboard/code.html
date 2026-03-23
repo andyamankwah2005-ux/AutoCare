@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoCare Pro - Mechanic Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#dcd9de",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f3f0f5",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface": "#fbf8fe",
+              "surface-container": "#f0edf2",
+              "tertiary-container": "#486081",
+              "on-tertiary-fixed": "#001c39",
+              "surface-bright": "#fbf8fe",
+              "on-tertiary-fixed-variant": "#2f4868",
+              "tertiary-fixed": "#d3e3ff",
+              "secondary-fixed-dim": "#4cd6fb",
+              "inverse-primary": "#b2c5ff",
+              "on-tertiary": "#ffffff",
+              "inverse-surface": "#303034",
+              "on-primary-container": "#ccd8ff",
+              "on-error-container": "#93000a",
+              "surface-tint": "#0056d2",
+              "secondary-fixed": "#b3ebff",
+              "on-surface": "#1b1b1f",
+              "on-primary-fixed": "#001847",
+              "outline-variant": "#c3c6d6",
+              "secondary-container": "#50d9fe",
+              "on-secondary-fixed": "#001f27",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#c3daff",
+              "on-error": "#ffffff",
+              "surface-variant": "#e4e1e7",
+              "outline": "#737785",
+              "surface-container-low": "#f6f2f8",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#afc8ee",
+              "primary-container": "#0056d2",
+              "primary-fixed": "#dae2ff",
+              "on-background": "#1b1b1f",
+              "background": "#fbf8fe",
+              "on-primary-fixed-variant": "#0040a1",
+              "secondary": "#00677d",
+              "primary": "#0040a1",
+              "on-surface-variant": "#424654",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#005c70",
+              "tertiary": "#304868",
+              "surface-container-high": "#eae7ed",
+              "surface-container-highest": "#e4e1e7",
+              "on-secondary-fixed-variant": "#004e5f",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbf8fe;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #0040a1 0%, #0056d2 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-50 dark:bg-slate-950 no-border shadow-2xl shadow-blue-900/5 z-50 border-r border-slate-200/10 font-['Inter'] text-sm font-medium">
+<div class="px-6 py-8">
+<div class="text-xl font-bold bg-gradient-to-br from-blue-700 to-blue-500 bg-clip-text text-transparent tracking-tighter">AutoCare Pro</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 mt-1">Precision Pilot v1.0</div>
+</div>
+<nav class="flex flex-col flex-1 px-2 space-y-1">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center px-4 py-3 bg-white dark:bg-slate-900 text-blue-700 dark:text-blue-400 shadow-sm rounded-lg mx-2 cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg mx-2 transition-colors cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">directions_car</span>
+<span>Vehicles</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg mx-2 transition-colors cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg mx-2 transition-colors cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg mx-2 transition-colors cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">event_available</span>
+<span>Appointments</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg mx-2 transition-colors cursor-pointer active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+<span>Inventory</span>
+</a>
+</nav>
+<div class="px-4 mt-auto mb-6">
+<button class="w-full premium-gradient text-white py-3 rounded-lg font-bold shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Appointment
+            </button>
+</div>
+<div class="border-t border-slate-200/10 px-4 py-6 space-y-1">
+<a class="flex items-center px-4 py-2 text-slate-500 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center px-4 py-2 text-slate-500 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-error">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Authority: JSON & Design System) -->
+<header class="w-full sticky top-0 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-sm dark:shadow-none font-['Manrope'] tracking-tight antialiased">
+<div class="flex justify-between items-center px-8 py-4 w-full border-b border-slate-200/50 dark:border-slate-800/50">
+<div class="flex items-center gap-6">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search by VIN, license plate, or customer..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<div class="text-xs font-bold text-on-surface">Alex Rivera</div>
+<div class="text-[10px] text-on-surface-variant">Master Technician</div>
+</div>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-primary-container/30" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKZ_2pp_ntMdHvnDePIqZ_DDZnmqMwy4ZZtfPfZGEYJFm6TKTvIRKgDuJDwJpKvtTmoFWo3V_T8z_4VEmySjWbzHzLk7o7d1BvpekmglQeourVnbFtZJdr4lpnTerS8kfExzWnZrGmdeEW6JDokpkm_N0oxDNzK-sNwDWQ8XNIJlOqYBLVQk9TvLIw2jMwa-pAR_pdU1OHqZVVYhk4KfMfSYJyr-X1Hx8SuuamOxRjlgaD0wHbMd50SZhI_IXYTm_T2qdtFnCo"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-[1600px] mx-auto space-y-8">
+<!-- Quick Actions Bar -->
+<section class="flex gap-4 items-center">
+<button class="group flex items-center gap-3 px-6 py-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-primary-container/30">
+<div class="w-10 h-10 premium-gradient rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div class="text-left">
+<div class="text-sm font-bold text-on-surface">Add New Customer</div>
+<div class="text-[10px] text-on-surface-variant">Quick register profile</div>
+</div>
+</button>
+<button class="group flex items-center gap-3 px-6 py-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-primary-container/30">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div class="text-left">
+<div class="text-sm font-bold text-on-surface">Register Vehicle</div>
+<div class="text-[10px] text-on-surface-variant">New service history</div>
+</div>
+</button>
+<button class="group flex items-center gap-3 px-6 py-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-primary-container/30">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div class="text-left">
+<div class="text-sm font-bold text-on-surface">Log Repair</div>
+<div class="text-[10px] text-on-surface-variant">Update work order</div>
+</div>
+</button>
+</section>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Stats Column -->
+<div class="col-span-8 grid grid-cols-2 gap-6">
+<!-- Revenue Analytics (Large Card) -->
+<div class="col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-2xl font-black font-headline tracking-tighter text-on-surface">Weekly Revenue</h3>
+<p class="text-sm text-on-surface-variant">Service and parts performance</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-container/10 text-primary font-bold text-xs rounded-full">Part Sales</span>
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary font-bold text-xs rounded-full">Labor</span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 px-2">
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-32 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-24 group-hover:h-28 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Mon</div>
+</div>
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-48 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-40 group-hover:h-44 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Tue</div>
+</div>
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-64 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-56 group-hover:h-60 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Wed</div>
+</div>
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-56 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-44 group-hover:h-48 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Thu</div>
+</div>
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-40 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-32 group-hover:h-36 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Fri</div>
+</div>
+<div class="w-full bg-surface-container-low rounded-t-lg relative group h-24 hover:bg-primary/10 transition-colors">
+<div class="absolute bottom-0 left-0 right-0 premium-gradient rounded-t-lg h-16 group-hover:h-20 transition-all"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">Sat</div>
+</div>
+</div>
+</div>
+<!-- Active Repairs -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="label-md uppercase tracking-widest text-on-surface-variant font-bold text-[10px]">Active Repairs</span>
+<span class="material-symbols-outlined text-primary">engineering</span>
+</div>
+<div class="text-4xl font-black font-headline tracking-tighter mb-2">14</div>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="text-secondary font-bold">+2 today</span>
+<span>from usual average</span>
+</div>
+</div>
+<!-- Part Failure Predictions -->
+<div class="bg-primary premium-gradient p-6 rounded-xl shadow-lg border border-primary-container/20 text-white">
+<div class="flex items-center justify-between mb-4">
+<span class="label-md uppercase tracking-widest text-primary-fixed font-bold text-[10px]">AI Prediction</span>
+<span class="material-symbols-outlined text-secondary-fixed">psychology</span>
+</div>
+<div class="text-lg font-bold leading-tight mb-2">Brake systems inventory alert</div>
+<p class="text-xs text-primary-fixed/80">3 expected failures in the next 48h based on historical fleet data.</p>
+<button class="mt-4 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold transition-all flex items-center gap-2">
+                            Restock Inventory <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<!-- Today's Appointments Table -->
+<div class="col-span-2 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="px-6 py-5 border-b border-surface-container flex justify-between items-center">
+<h3 class="font-bold text-on-surface">Today's Appointments</h3>
+<button class="text-xs text-primary font-bold hover:underline">View Schedule</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm">
+<thead class="bg-surface-container-low text-on-surface-variant text-[10px] uppercase tracking-wider font-bold">
+<tr>
+<th class="px-6 py-3 text-left">Customer / Vehicle</th>
+<th class="px-6 py-3 text-left">Service Type</th>
+<th class="px-6 py-3 text-left">Time</th>
+<th class="px-6 py-3 text-left">Status</th>
+<th class="px-6 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-sm">directions_car</span>
+</div>
+<div>
+<div class="font-bold">Marco Ross</div>
+<div class="text-[10px] text-on-surface-variant">BMW X5 • NY-7821</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Oil Change &amp; Filter</td>
+<td class="px-6 py-4 font-medium">09:30 AM</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary font-bold text-[10px] rounded">In Progress</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-sm">directions_car</span>
+</div>
+<div>
+<div class="font-bold">Elena Vance</div>
+<div class="text-[10px] text-on-surface-variant">Audi A4 • CA-9902</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Brake Pad Replacement</td>
+<td class="px-6 py-4 font-medium">11:00 AM</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-bold text-[10px] rounded">Scheduled</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-sm">directions_car</span>
+</div>
+<div>
+<div class="font-bold">James Miller</div>
+<div class="text-[10px] text-on-surface-variant">Ford F-150 • TX-3341</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Tire Rotation</td>
+<td class="px-6 py-4 font-medium">01:45 PM</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-bold text-[10px] rounded">Scheduled</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Side Activity Column -->
+<div class="col-span-4 space-y-6">
+<!-- Vehicle Status Summary -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                            Fleet Health
+                        </h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold">
+<span>Ready for Pickup</span>
+<span class="text-secondary">85%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold">
+<span>Waiting for Parts</span>
+<span class="text-primary">12%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 12%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold">
+<span>Critical / Delayed</span>
+<span class="text-error">3%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 3%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-surface-container flex items-center justify-around text-center">
+<div>
+<div class="text-xl font-black">28</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Total In Shop</div>
+</div>
+<div class="h-8 w-[1px] bg-surface-container"></div>
+<div>
+<div class="text-xl font-black">12</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Completed</div>
+</div>
+</div>
+</div>
+<!-- Recent Activities Feed -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="font-bold text-on-surface mb-6">Recent Activities</h3>
+<div class="relative space-y-6 before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container">
+<div class="relative pl-10">
+<div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-secondary ring-4 ring-white"></div>
+<div class="text-xs font-bold">New Repair Logged</div>
+<p class="text-[10px] text-on-surface-variant mt-1">Toyota Camry #7712 assigned to Bay 4 by Alex R.</p>
+<span class="text-[9px] text-on-surface-variant/60">2 minutes ago</span>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-white"></div>
+<div class="text-xs font-bold">Parts Arrived</div>
+<p class="text-[10px] text-on-surface-variant mt-1">Brake rotors for Customer #9921 received in inventory.</p>
+<span class="text-[9px] text-on-surface-variant/60">15 minutes ago</span>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-surface-dim ring-4 ring-white"></div>
+<div class="text-xs font-bold">Payment Confirmed</div>
+<p class="text-[10px] text-on-surface-variant mt-1">Invoice #8829 ($452.00) paid by Sarah Connor.</p>
+<span class="text-[9px] text-on-surface-variant/60">1 hour ago</span>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-error ring-4 ring-white"></div>
+<div class="text-xs font-bold">Appointment Cancelled</div>
+<p class="text-[10px] text-on-surface-variant mt-1">Honda Civic (2:00 PM) cancelled via mobile app.</p>
+<span class="text-[9px] text-on-surface-variant/60">3 hours ago</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-primary hover:bg-primary-container/5 rounded-lg transition-all border border-primary-container/20">
+                            Load Full History
+                        </button>
+</div>
+<!-- Workshop Live Cam (Visual Polish) -->
+<div class="relative h-48 rounded-xl overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="High tech car repair workshop interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5z1DFW90JtMQKLDSZKOtIzaWaRRTG_Xj5u_hDY8ms7uUoT61B6rc1A-t4VdOHho8eQ68aa5C9-F45-7GHjx53ORAZzkiweLm-OkCTpJJpOnrulaZmTw8KQ5P_dGmx7J8tw7LzCvI6b5tfQsqbJmxrVeUZOjrKlkhM30MYsGj_RIWv9zsac84AJUUgSRk9m9DHBuOPQbGE-K12D5dOIOuBwFsSFg9dwW-0zzE-0mOthUh4UtY55_6GQZHDbcF57Kn1w9HKiQM5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 text-[10px] text-secondary-container font-bold uppercase tracking-widest">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> Live Stream
+                                </div>
+<div class="text-white font-bold text-sm">Main Service Bay 02</div>
+</div>
+<button class="p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-all">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
